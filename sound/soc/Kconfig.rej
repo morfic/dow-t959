@@ -1,0 +1,11 @@
+--- sound/soc/Kconfig
++++ sound/soc/Kconfig
+@@ -38,6 +38,8 @@
+ source "sound/soc/sh/Kconfig"
+ source "sound/soc/txx9/Kconfig"
+ 
++source "sound/soc/codecs/Kconfig.voodoo"
++
+ # Supported codecs
+ source "sound/soc/codecs/Kconfig"
+ 
