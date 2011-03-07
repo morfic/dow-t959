@@ -1,0 +1,21 @@
+--- sound/soc/codecs/wm8994_aries.c
++++ sound/soc/codecs/wm8994_aries.c
+@@ -20,6 +20,7 @@
+ #include <mach/regs-clock.h> 
+ #include <mach/gpio.h> 
+ #include "wm8994.h"
++#include "wm8994_voodoo.h"
+ 
+ //------------------------------------------------
+ //		Debug Feature
+@@ -4065,6 +4066,10 @@
+ 	//DAC1 Unmute
+ 	wm8994_write(codec, WM8994_AIF1_DAC1_FILTERS_1, 0x0000);
+ 
++#ifdef CONFIG_SND_VOODOO
++	voodoo_hook_fmradio_headset();
++#endif
++
+ 	val = wm8994_read(codec, WM8994_AIF2_DAC_FILTERS_1);	//520 : 0
+ 	val &= ~(WM8994_AIF2DAC_MUTE_MASK);
+ 	wm8994_write(codec, WM8994_AIF2_DAC_FILTERS_1, val);

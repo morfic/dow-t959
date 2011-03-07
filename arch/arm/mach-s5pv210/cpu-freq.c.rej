@@ -1,0 +1,18 @@
+--- arch/arm/mach-s5pv210/cpu-freq.c
++++ arch/arm/mach-s5pv210/cpu-freq.c
+@@ -748,7 +749,14 @@
+        #endif
+ 
+ 
+-       return cpufreq_frequency_table_cpuinfo(policy, s5pc110_freq_table[S5PC11X_FREQ_TAB]);
++//     return cpufreq_frequency_table_cpuinfo(policy, s5pc110_freq_table[S5PC11X_FREQ_TAB]);
++
++        cpufreq_frequency_table_cpuinfo(policy, s5pc110_freq_table[S5PC11X_FREQ_TAB]);
++       /* set default min and max policies to non safe speeds */
++       policy->max = 1000000;
++       policy->min = 100000;
++       return 0;
++
+ }
+ 
+ 

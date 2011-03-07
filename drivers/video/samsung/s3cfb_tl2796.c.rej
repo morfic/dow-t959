@@ -1,0 +1,11 @@
+--- drivers/video/samsung/s3cfb_tl2796.c
++++ drivers/video/samsung/s3cfb_tl2796.c
+@@ -279,7 +279,7 @@
+ 		.v_sw = 2,
+ 	},
+ #else
+-	.freq = 60,
++	.freq = 72,
+ 	.timing = {
+ 		.h_fp = 16,
+ 		.h_bp = 16,

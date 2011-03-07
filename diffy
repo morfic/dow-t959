@@ -1,0 +1,29 @@
+--- arch/arm/mach-s5pv210/cpu-freq.c	2011-02-21 14:53:11.436666685 -0600
++++ ../../JPX/Kernel/arch/arm/mach-s5pv210/cpu-freq.c	2011-02-15 04:20:55.893333340 -0600
+@@ -47,7 +47,7 @@ unsigned int dvfs_change_direction;
+ #define CLIP_LEVEL(a, b) (a > b ? b : a)
+ 
+ unsigned int MAXFREQ_LEVEL_SUPPORTED = 5;
+-unsigned int S5PC11X_MAXFREQLEVEL = 4;
++unsigned int S5PC11X_MAXFREQLEVEL = 5;
+ unsigned int S5PC11X_FREQ_TAB;
+ static spinlock_t g_dvfslock = SPIN_LOCK_UNLOCKED;
+ static unsigned int s5pc11x_cpufreq_level = 3;
+@@ -577,7 +577,7 @@ static int s5pc110_target(struct cpufreq
+ 
+ 		// ARM MCS value set
+ 		if (S5PC11X_FREQ_TAB  == 0) { // for 1G table
+-			if ((prevIndex >= 4) && (index < 4)) {
++			if ((prevIndex >= 3) && (index < 3)) {
+ 				ret = __raw_readl(S5P_ARM_MCS);
+ 				DBG("MDSvalue = %08x\n", ret);				
+ 				ret = (ret & ~(0x3)) | 0x1;
+@@ -752,7 +752,7 @@ static int __init s5pc110_cpu_init(struc
+ //	return cpufreq_frequency_table_cpuinfo(policy, s5pc110_freq_table[S5PC11X_FREQ_TAB]);
+ 
+         cpufreq_frequency_table_cpuinfo(policy, s5pc110_freq_table[S5PC11X_FREQ_TAB]);
+-       /* set default min and max policies to safe speeds */
++       /* set default min and max policies to non safe speeds */
+        policy->max = 1000000;
+        policy->min = 100000;
+        return 0;
